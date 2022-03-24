@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: bolang
+        file-extension: yml
+    gateway:
+      routes:
+        - id: student-route
+          uri: lb://student-service
+          predicates:
+            - Path=/student/**
+        - id: school-route
+          uri: lb://school-service
+          predicates:
+            - Path=/school/**
+
